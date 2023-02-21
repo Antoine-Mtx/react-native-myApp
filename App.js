@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { NavigationContainer } from "@react-navigation/native";
+// import { TabNavigator, Container } from "./src/navigation/TabBar";
+// import {
+//   SafeAreaProvider,
+//   SafeAreaView,
+//   useSafeAreaInsets,
+// } from "react-native-safe-area-context";
+// import { GameProvider } from "./src/provider/GameProvider";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+// export default function App() {
+//   return (
+//     <SafeAreaProvider>
+//       <SafeAreaView style={{ flex: 1 }}>
+//         <GameProvider>
+//           <NavigationContainer>
+//             <TabNavigator />
+//           </NavigationContainer>
+//         </GameProvider>
+//       </SafeAreaView>
+//     </SafeAreaProvider>
+//   );
+// }
+
+import React from "react";
+import { View, Text, Image, Button } from "react-native";
+import ImagePicker from "react-native-image-picker";
+
+export default class App extends React.Component {
+  handleChoosePhoto = () => {
+    const options = {};
+    ImagePicker.launchImageLibrary(options, response => {
+      console.log('response', response);
+    });
+  };
+
+  render() {
+    return (
+      // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View>
+        <Button title='Choisir votre photo' onPress={this.handleChoosePhoto}/>
+      </View>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
